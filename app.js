@@ -11,7 +11,7 @@ function createGridSquare(row, col) {
     square.classList.add('grid-square');
     square.id = `square-row-${row}-col-${col}`;
 
-    square.addEventListener('mouseover', (event) => {
+    square.addEventListener('mouseover', () => {
         const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
         square.style.backgroundColor = randomColor;
     });
@@ -20,7 +20,7 @@ function createGridSquare(row, col) {
 }
 
 function createGrid(size = 16) {
-    const gridContainer = document.querySelector('#grid-container');
+    gridContainer.replaceChildren();
 
     for (let row = 0; row < size; row++) {
         const gridRow = createGridRow(row);
@@ -34,5 +34,13 @@ function createGrid(size = 16) {
         gridContainer.appendChild(gridRow);
     }
 }
+
+function resizeGrid(event) {
+    const userInput = prompt('Grid size must be between 1 and 100.\n\nEnter new grid size:');
+
+    createGrid(parseInt(userInput));
+}
+
+const gridContainer = document.querySelector('#grid-container');
 
 createGrid();
