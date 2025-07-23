@@ -11,6 +11,11 @@ function createGridSquare(row, col) {
     square.classList.add('grid-square');
     square.id = `square-row-${row}-col-${col}`;
 
+    square.addEventListener('mouseover', (event) => {
+        const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+        square.style.backgroundColor = randomColor;
+    });
+
     return square;
 }
 
