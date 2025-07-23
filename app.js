@@ -12,6 +12,14 @@ function createGridSquare(row, col) {
     square.id = `square-row-${row}-col-${col}`;
 
     square.addEventListener('mouseover', () => {
+        // Starts off opacity at 10%. Increments opacity by 10% until 100% reached.
+        if (square.style.backgroundColor == '') {
+            square.style.opacity = '0.1';
+        } else if (parseFloat(square.style.opacity) < 1) {
+            square.style.opacity = String(parseFloat(square.style.opacity) + 0.1);
+        }
+
+        console.log(square.style.opacity);
         const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
         square.style.backgroundColor = randomColor;
     });
